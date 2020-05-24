@@ -41,10 +41,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../src'),
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ]
+        use: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.(css|scss)$/,
@@ -79,13 +76,13 @@ module.exports = {
           publicPath: path.resolve(__dirname, '../dist')
         }
       }
-    ],
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env,
-      'NODE_ENV': env.NODE_ENV,
-      'API_ENDPOINT': env.API_ENDPOINT
+      NODE_ENV: env.NODE_ENV,
+      API_ENDPOINT: env.API_ENDPOINT
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -93,11 +90,13 @@ module.exports = {
       template: path.resolve(__dirname, '../public/index.html'),
       showErrors: true
     }),
-    new CopyWebpackPlugin([
-      {
-        from: 'public',
-        ignore: ['index.html']
-      }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: 'dist'
+        }
+      ]
+    })
   ]
 }
