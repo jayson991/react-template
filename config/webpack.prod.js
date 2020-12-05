@@ -93,6 +93,7 @@ module.exports = {
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
         removeAttributeQuotes: true,
         removeCommentsFromCDATA: true,
         keepClosingSlash: true,
