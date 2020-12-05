@@ -1,20 +1,20 @@
 const path = require('path')
 const env = require('./env.prod')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-const productionGzipExtensions = [ 'js', 'css' ]
+const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   mode: 'production',
   entry: {
     app: './src/index.js',
-    vendor: [ 'react', 'react-dom' ]
+    vendor: ['react', 'react-dom']
   },
   output: {
     filename: 'script/[name].[contenthash:8].js',
@@ -22,7 +22,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: [ '.js' ],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, '../src/')
     }
@@ -36,10 +36,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../src'),
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ]
+        use: ['babel-loader']
       },
       {
         test: /\.(css|scss)$/,
@@ -57,30 +54,32 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8 * 1024,
-          name: 'imgs/[name].[hash:8].[ext]',
-          outputPath: 'static',
-          publicPath: path.resolve(__dirname, '../dist')
+        type: 'asset/resource',
+        generator: {
+          filename: 'imgs/[name].[hash:8].[ext]'
         }
       },
       {
-        exclude: [ /\.(js|css|scss)$/, /\.html$/, /\.json$/ ],
-        loader: 'file-loader',
-        options: {
-          name: 'media/[path][name].[hash:8].[ext]',
-          outputPath: 'static',
-          publicPath: path.resolve(__dirname, '../dist')
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
+        type: 'asset/resource',
+        generator: {
+          filename: 'media/[path][name].[hash:8].[ext]'
         }
       }
-    ],
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env,
-      'NODE_ENV': env.NODE_ENV,
-      'API_ENDPOINT': env.API_ENDPOINT
+      NODE_ENV: env.NODE_ENV,
+      API_ENDPOINT: env.API_ENDPOINT
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -106,7 +105,7 @@ module.exports = {
       filename: 'style/[name].[contenthash:8].css'
     }),
     new CompressionWebpackPlugin({
-      filename: '[path].gz[query]',
+      filename: '[path][name].gz[query]',
       algorithm: 'gzip',
       test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
       threshold: 10240,
@@ -137,9 +136,7 @@ module.exports = {
           }
         }
       }),
-      new TerserPlugin({
-        sourceMap: false
-      })
+      new TerserPlugin()
     ]
   }
 }

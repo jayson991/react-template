@@ -1,9 +1,9 @@
 const path = require('path')
 const env = require('./env.dev')
 const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -17,21 +17,23 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, '../src/')
     }
   },
   devServer: {
-    host: '0.0.0.0',
-    port: 8080,
     hot: true,
     open: true,
+    port: 8080,
     inline: true,
     progress: true,
-    historyApiFallback: true
+    compress: true,
+    host: '0.0.0.0',
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, 'dist')
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
   module: {
     rules: [
       {
@@ -41,10 +43,10 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../src'),
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader']
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
           {
@@ -59,21 +61,23 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 8 * 1024,
-          name: 'imgs/[name].[hash:8].[ext]',
-          outputPath: 'static',
-          publicPath: path.resolve(__dirname, '../dist')
+        type: 'asset/resource',
+        generator: {
+          filename: 'imgs/[name].[hash:8].[ext]'
         }
       },
       {
-        exclude: [/\.(js|css|scss)$/, /\.html$/, /\.json$/],
-        loader: 'file-loader',
-        options: {
-          name: 'media/[path][name].[hash:8].[ext]',
-          outputPath: 'static',
-          publicPath: path.resolve(__dirname, '../dist')
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
+        type: 'asset/resource',
+        generator: {
+          filename: 'media/[path][name].[hash:8].[ext]'
         }
       }
     ]
