@@ -34,12 +34,12 @@ module.exports = {
         loader: 'html-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: path.resolve(__dirname, '../src'),
         use: ['babel-loader']
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.s?css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -49,7 +49,12 @@ module.exports = {
             }
           },
           'postcss-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          }
         ]
       },
       {

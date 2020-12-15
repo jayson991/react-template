@@ -1,9 +1,6 @@
-.DS_Store
-npm-debug.log
-package-lock.json
-
 .vscode
-.history
+.DS_Store
+package-lock.json
 
 dist
 node_modules
