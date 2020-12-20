@@ -12,6 +12,8 @@ const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   mode: 'production',
+  // webpack 5.x default output ES6
+  target: [ 'web', 'es5' ],
   entry: {
     app: './src/index.js',
     vendor: ['react', 'react-dom']
