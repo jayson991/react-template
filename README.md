@@ -87,14 +87,14 @@ $ npm i -g eslint typescript
   "javascript.updateImportsOnFileMove.enabled": "always",
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "eslint.validate": [
-    "html",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["html", "javascript", "javascriptreact", "typescript", "typescriptreact"],
   "typescript.preferences.quoteStyle": "single",
   "typescript.updateImportsOnFileMove.enabled": "always"
 }
 ```
+
+## Some Dependencies Removed
+
+- enzyme
+- enzyme-to-json
+- enzyme-adapter-react-16
