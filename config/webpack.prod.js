@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
-const productionGzipExtensions = ['js', 'css']
+const productionGzipExtensions = [ 'js', 'css' ]
 
 module.exports = {
   mode: 'production',
@@ -16,7 +16,7 @@ module.exports = {
   target: [ 'web', 'es5' ],
   entry: {
     app: './src/index.js',
-    vendor: ['react', 'react-dom']
+    vendor: [ 'react', 'react-dom' ]
   },
   output: {
     filename: 'script/[name].[contenthash:8].js',
@@ -24,7 +24,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [ '.js', '.jsx' ],
     alias: {
       '@': path.resolve(__dirname, '../src/')
     }
@@ -38,7 +38,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, '../src'),
-        use: ['babel-loader']
+        use: [ 'babel-loader' ]
       },
       {
         test: /\.s?css$/,
@@ -74,7 +74,7 @@ module.exports = {
         }
       },
       {
-        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
+        exclude: [ /\.(js|s?css)$/, /\.html$/, /\.json$/ ],
         type: 'asset/resource',
         generator: {
           filename: 'media/[path][name].[hash:8].[ext]'
@@ -100,7 +100,6 @@ module.exports = {
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
         removeAttributeQuotes: true,
         removeCommentsFromCDATA: true,
         keepClosingSlash: true,
