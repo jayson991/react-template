@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.js',
+    app: path.resolve(__dirname, '../src/index.js'),
     vendor: [ 'react', 'react-dom' ]
   },
   output: {
@@ -29,7 +29,8 @@ module.exports = {
     inline: true,
     progress: true,
     compress: true,
-    host: '0.0.0.0',
+    // When using docker, please uncomment the following configuration
+    // host: '0.0.0.0',
     historyApiFallback: true,
     contentBase: path.join(__dirname, 'dist')
   },
@@ -72,7 +73,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
         type: 'asset/resource',
         generator: {
           filename: 'fonts/[name].[hash:8].[ext]'
