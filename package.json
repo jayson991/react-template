@@ -55,7 +55,7 @@
     "css-minimizer-webpack-plugin": "^1.2.0",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.1",
-    "eslint": "^7.17.0",
+    "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-jsx-control-statements": "^2.2.1",
