@@ -10,7 +10,7 @@
     "test": "jest --watchAll",
     "lint": "eslint ./ --ext .js,.jsx",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "prettier --write src/**/*.js",
+    "prettier": "prettier --write src/**/*.{js,jsx}",
     "build": "webpack --config config/webpack.prod.js",
     "start": "webpack serve --config config/webpack.dev.js",
     "docker:dev": "docker build -f Dockerfile.dev -t react-template . && docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm react-template",
