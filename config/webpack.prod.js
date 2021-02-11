@@ -15,11 +15,11 @@ module.exports = {
   // webpack 5.x default output ES6
   target: ['web', 'es5'],
   entry: {
-    app: './src/index.js',
+    app: path.resolve(__dirname, '../src/index.js'),
     vendor: ['react', 'react-dom']
   },
   output: {
-    filename: 'script/[name].[contenthash:8].js',
+    filename: 'scripts/[name].[contenthash:8].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -63,7 +63,7 @@ module.exports = {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'imgs/[name].[hash:8].[ext]'
+          filename: 'images/[name].[hash:8].[ext]'
         }
       },
       {
@@ -74,10 +74,10 @@ module.exports = {
         }
       },
       {
-        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
+        exclude: [/(^|\.(js|jsx|css|scss|html|json))$/],
         type: 'asset/resource',
         generator: {
-          filename: 'media/[name].[hash:8].[ext]'
+          filename: 'medias/[name].[hash:8].[ext]'
         }
       }
     ]
@@ -109,7 +109,7 @@ module.exports = {
       }
     }),
     new MiniCssExtractPlugin({
-      filename: 'style/[name].[contenthash:8].css'
+      filename: 'styles/[name].[contenthash:8].css'
     }),
     new CompressionWebpackPlugin({
       filename: '[path][name].gz[query]',

@@ -12,9 +12,9 @@ module.exports = {
     vendor: ['react', 'react-dom']
   },
   output: {
+    publicPath: '/',
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
+    path: path.resolve(__dirname, '../dist')
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -69,7 +69,7 @@ module.exports = {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'imgs/[name].[hash:8].[ext]'
+          filename: 'images/[name].[hash:8].[ext]'
         }
       },
       {
@@ -80,10 +80,10 @@ module.exports = {
         }
       },
       {
-        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
+        exclude: [/(^|\.(js|jsx|css|scss|html|json))$/],
         type: 'asset/resource',
         generator: {
-          filename: 'media/[name].[hash:8].[ext]'
+          filename: 'medias/[name].[hash:8].[ext]'
         }
       }
     ]
