@@ -9,7 +9,7 @@ module.exports = {
   mode: 'development',
   entry: {
     app: path.resolve(__dirname, '../src/index.js'),
-    vendor: [ 'react', 'react-dom' ]
+    vendor: ['react', 'react-dom']
   },
   output: {
     filename: '[name].bundle.js',
@@ -17,7 +17,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: [ '.js', '.jsx' ],
+    extensions: ['.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, '../src/')
     }
@@ -44,7 +44,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, '../src'),
-        use: [ 'babel-loader' ]
+        use: ['babel-loader']
       },
       {
         test: /\.s?css$/,
@@ -80,7 +80,7 @@ module.exports = {
         }
       },
       {
-        exclude: [ /\.(js|s?css)$/, /\.html$/, /\.json$/ ],
+        exclude: [/\.(js|s?css)$/, /\.html$/, /\.json$/],
         type: 'asset/resource',
         generator: {
           filename: 'media/[name].[hash:8].[ext]'
