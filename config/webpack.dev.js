@@ -97,8 +97,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve(__dirname, '../public/index.html'),
-      showErrors: true
+      showErrors: true,
+      template: path.resolve(__dirname, '../public/index.html')
     }),
     new CopyWebpackPlugin({
       patterns: [
