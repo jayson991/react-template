@@ -42,7 +42,7 @@ module.exports = {
         loader: 'html-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         include: path.resolve(__dirname, '../src'),
         use: ['babel-loader']
       },
