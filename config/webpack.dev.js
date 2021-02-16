@@ -8,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    app: path.resolve(__dirname, '../src/index.js'),
+    app: path.resolve(__dirname, '../src/index.jsx'),
     vendor: ['react', 'react-dom']
   },
   output: {
@@ -26,13 +26,9 @@ module.exports = {
     hot: true,
     open: true,
     port: 8080,
-    inline: true,
-    progress: true,
     compress: true,
-    // When using docker, please uncomment the following configuration
-    // host: '0.0.0.0',
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, 'dist')
+    host: '0.0.0.0',
+    historyApiFallback: true
   },
   devtool: 'eval-cheap-module-source-map',
   module: {
