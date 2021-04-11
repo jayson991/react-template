@@ -2,8 +2,6 @@ const path = require('path')
 const env = require('./env.dev')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -40,6 +38,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, '../src'),
+        exclude: path.resolve(__dirname, '../node_modules'),
         use: ['babel-loader']
       },
       {
@@ -90,19 +89,10 @@ module.exports = {
       NODE_ENV: env.NODE_ENV,
       API_ENDPOINT: env.API_ENDPOINT
     }),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       showErrors: true,
       template: path.resolve(__dirname, '../public/index.html')
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public',
-          to: 'dist'
-        }
-      ]
     })
   ]
 }

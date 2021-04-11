@@ -15,11 +15,11 @@ module.exports = {
   // webpack 5.x default output ES6
   target: ['web', 'es5'],
   entry: {
-    app: path.resolve(__dirname, '../src/index.js'),
+    app: path.resolve(__dirname, '../src/index.jsx'),
     vendor: ['react', 'react-dom']
   },
   output: {
-    filename: 'scripts/[name].[contenthash:8].js',
+    filename: 'scripts/[name].[chunkhash:8].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
@@ -38,6 +38,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, '../src'),
+        exclude: path.resolve(__dirname, '../node_modules'),
         use: ['babel-loader']
       },
       {
