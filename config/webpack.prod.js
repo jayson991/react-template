@@ -12,10 +12,9 @@ const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   mode: 'production',
-  // webpack 5.x default output ES6
   target: ['web', 'es5'],
   entry: {
-    app: path.resolve(__dirname, '../src/index.jsx'),
+    app: path.resolve(__dirname, '../src/index.js'),
     vendor: ['react', 'react-dom']
   },
   output: {
@@ -72,13 +71,6 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'fonts/[name].[hash:8].[ext]'
-        }
-      },
-      {
-        exclude: [/(^|\.(js|jsx|css|scss|html|json))$/],
-        type: 'asset/resource',
-        generator: {
-          filename: 'medias/[name].[hash:8].[ext]'
         }
       }
     ]

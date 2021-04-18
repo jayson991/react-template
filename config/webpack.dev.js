@@ -2,13 +2,14 @@ const path = require('path')
 const env = require('./env.dev')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: {
-    app: path.resolve(__dirname, '../src/index.jsx'),
-    vendor: ['react', 'react-dom']
-  },
+  devtool: 'eval-cheap-module-source-map',
+  entry: [path.resolve(__dirname, '../src/index.js')],
   output: {
     publicPath: '/',
     filename: '[name].bundle.js',
@@ -22,64 +23,60 @@ module.exports = {
   },
   devServer: {
     hot: true,
-    open: true,
     port: 8080,
     compress: true,
-    host: '0.0.0.0',
-    historyApiFallback: true
+    progress: true,
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, '../dist')
   },
-  devtool: 'eval-cheap-module-source-map',
   module: {
     rules: [
       {
-        test: /\.html$/,
-        loader: 'html-loader'
-      },
-      {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         include: path.resolve(__dirname, '../src'),
-        exclude: path.resolve(__dirname, '../node_modules'),
-        use: ['babel-loader']
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              plugins: [require.resolve('react-refresh/babel')].filter(Boolean)
+            }
+          }
+        ]
       },
       {
-        test: /\.s?css$/,
+        test: /\.s?[ac]ss$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: false
             }
           },
-          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
               implementation: require('sass')
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                ident: 'postcss'
+              }
             }
           }
         ]
       },
       {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'images/[name].[hash:8].[ext]'
-        }
+        type: 'asset/resource'
       },
       {
         test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'fonts/[name].[hash:8].[ext]'
-        }
-      },
-      {
-        exclude: [/(^|\.(js|jsx|css|scss|html|json))$/],
-        type: 'asset/resource',
-        generator: {
-          filename: 'medias/[name].[hash:8].[ext]'
-        }
+        type: 'asset/inline'
       }
     ]
   },
@@ -89,10 +86,27 @@ module.exports = {
       NODE_ENV: env.NODE_ENV,
       API_ENDPOINT: env.API_ENDPOINT
     }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].[contenthash:8].css',
+      chunkFilename: '[id].[contenthash:8].css'
+    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: paths.src + '/assets',
+    //       to: 'assets',
+    //       globOptions: {
+    //         ignore: ['*.DS_Store'],
+    //       },
+    //     },
+    //   ],
+    // }),
     new HtmlWebpackPlugin({
-      inject: true,
-      showErrors: true,
-      template: path.resolve(__dirname, '../public/index.html')
-    })
-  ]
+      name: 'index.html',
+      template: path.resolve(__dirname, '../public/index.html'),
+      favicon: path.resolve(__dirname, '../public/favicon.ico')
+    }),
+    new ReactRefreshWebpackPlugin()
+  ].filter(Boolean)
 }

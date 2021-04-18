@@ -27,7 +27,7 @@ $ npm run docker:dev
 ### If you have not installed node && npm, try the command below
 
 ```bash
-$ docker build -f Dockerfile.dev -t react-template:dev . && docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm react-template:dev
+$ docker build -f Dockerfile.dev -t dev:builder . && docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm dev:builder
 ```
 
 ## Docker for deploy
@@ -39,7 +39,7 @@ $ npm run docker:deploy
 ### If you have not installed node && npm, try the command below
 
 ```bash
-$ docker build -f Dockerfile.prod -t react-template-builder . && docker run -it -p 80:80 --rm react-template-builder
+$ docker build -f Dockerfile.prod -t prod:builder . && docker run -it -p 80:80 --rm prod:builder
 ```
 
 ## Check code formation
@@ -51,5 +51,5 @@ $ npm run lint
 ## Lint to correct code formation
 
 ```bash
-$ npm run prettier
+$ npm run prettify
 ```
