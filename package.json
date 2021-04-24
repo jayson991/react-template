@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "A React Template Project",
-  "author": "Jayson Wu <wulingjie991@outlook.com>",
+  "author": "Jayson Wu <jaysonwu991@outlook.com>",
   "main": "index.js",
   "license": "ISC",
   "scripts": {

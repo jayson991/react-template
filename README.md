@@ -1,14 +1,17 @@
 # react-template
 
-> **Highly Recommend** using **yarn** or **pnpm** to run the project since both are faster than **npm**
+## Development Warning
+
+- **Linux/Mac** for development is necessary, setting environment valuables on **Windows** is not compatible
+- **Highly Recommend** using **yarn** or **pnpm** to run the project since both are faster than **npm** for their own features
 
 ## Features
 
-- Use **Webpack** for bundler
+- Use **Webpack 5** for bundler
 - Use **Babel** for **Javascript** compiler
 - Use **Eslint** && **Prettier** for linter
-- Support **Fast Refresh** of the latest **React**
-- Support **sass(dart-sass)**, **Postcss** && **Autoprefixer** for applying prefixes to support browsers you want
+- Support **Fast Refresh** of **React** (`v17+`)
+- Support **sass** (Replace `node-sass` with `dart-sass` for [LibSass is Deprecated](https://sass-lang.com/blog/libsass-is-deprecated)), **Postcss** && **Autoprefixer** for applying prefixes to support browsers you want
 - Run the project in development mode and monitor production deployment through **Docker**, you can understand the pipeline of deployment clearly
 - Use **Jest** for unit test, you can make it a **TDD** project to level up your personal skills
 
