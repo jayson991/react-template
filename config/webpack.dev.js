@@ -13,13 +13,13 @@ module.exports = {
   output: {
     publicPath: '/',
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
   },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, '../src/')
-    }
+      '@': path.resolve(__dirname, '../src/'),
+    },
   },
   devServer: {
     hot: true,
@@ -27,7 +27,7 @@ module.exports = {
     compress: true,
     progress: true,
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, '../dist')
+    contentBase: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -39,10 +39,10 @@ module.exports = {
           {
             loader: require.resolve('babel-loader'),
             options: {
-              plugins: [require.resolve('react-refresh/babel')].filter(Boolean)
-            }
-          }
-        ]
+              plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+          },
+        ],
       },
       {
         test: /\.s?[ac]ss$/,
@@ -51,45 +51,45 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: false
-            }
+              modules: false,
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              implementation: require('sass')
-            }
+              implementation: require('sass'),
+            },
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                ident: 'postcss'
-              }
-            }
-          }
-        ]
+                ident: 'postcss',
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(jpg|jpeg|bmp|png|webp|gif)$/,
-        type: 'asset/resource'
+        type: 'asset/resource',
       },
       {
         test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
-        type: 'asset/inline'
-      }
-    ]
+        type: 'asset/inline',
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': env,
       NODE_ENV: env.NODE_ENV,
-      API_ENDPOINT: env.API_ENDPOINT
+      API_ENDPOINT: env.API_ENDPOINT,
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash:8].css',
-      chunkFilename: '[id].[contenthash:8].css'
+      chunkFilename: '[id].[contenthash:8].css',
     }),
     // new CopyWebpackPlugin({
     //   patterns: [
@@ -105,8 +105,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       name: 'index.html',
       template: path.resolve(__dirname, '../public/index.html'),
-      favicon: path.resolve(__dirname, '../public/favicon.ico')
+      favicon: path.resolve(__dirname, '../public/favicon.ico'),
     }),
-    new ReactRefreshWebpackPlugin()
-  ].filter(Boolean)
+    new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 }

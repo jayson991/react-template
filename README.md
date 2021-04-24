@@ -1,5 +1,17 @@
 # react-template
 
+> **Highly Recommend** using **yarn** or **pnpm** to run the project since both are faster than **npm**
+
+## Features
+
+- Use **Webpack** for bundler
+- Use **Babel** for **Javascript** compiler
+- Use **Eslint** && **Prettier** for linter
+- Support **Fast Refresh** of the latest **React**
+- Support **sass(dart-sass)**, **Postcss** && **Autoprefixer** for applying prefixes to support browsers you want
+- Run the project in development mode and monitor production deployment through **Docker**, you can understand the pipeline of deployment clearly
+- Use **Jest** for unit test, you can make it a **TDD** project to level up your personal skills
+
 ## Install dependencies
 
 ```bash
@@ -16,6 +28,19 @@ $ npm start
 
 ```bash
 $ npm run build
+```
+
+## Check code formation
+
+```bash
+$ npm run lint
+```
+
+## Lint to correct code formation
+
+```bash
+$ npm run lint:fix
+$ npm run prettify
 ```
 
 ## Docker for development
@@ -40,16 +65,4 @@ $ npm run docker:deploy
 
 ```bash
 $ docker build -f Dockerfile.prod -t prod:builder . && docker run -it -p 80:80 --rm prod:builder
-```
-
-## Check code formation
-
-```bash
-$ npm run lint
-```
-
-## Lint to correct code formation
-
-```bash
-$ npm run prettify
 ```
