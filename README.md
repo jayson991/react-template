@@ -11,6 +11,7 @@
 - Use **Babel** for **Javascript** compiler
 - Use **Eslint** && **Prettier** for linter
 - Support **Fast Refresh** of **React** (`v17+`)
+- No need to do `import React from 'react'` since `@babel/preset-react` has injected **React** to scripts for you
 - Support **sass** (Replace `node-sass` with `dart-sass` for [LibSass is Deprecated](https://sass-lang.com/blog/libsass-is-deprecated)), **Postcss** && **Autoprefixer** for applying prefixes to support browsers you want
 - Run the project in development mode and monitor production deployment through **Docker**, you can understand the pipeline of deployment clearly
 - Use **Jest** for unit test, you can make it a **TDD** project to level up your personal skills

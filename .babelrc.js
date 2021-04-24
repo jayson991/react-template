@@ -8,19 +8,19 @@ module.exports = {
         corejs: 3,
         modules: isDev ? 'auto' : false,
         useBuiltIns: 'usage',
-        targets: '> 1%, last 2 versions, not ie <= 8, iOS >= 8, Firefox >= 20, Android > 4.4'
-      }
+        targets: '> 1%, last 2 versions, not ie <= 8, iOS >= 8, Firefox >= 20, Android > 4.4',
+      },
     ],
     [
       '@babel/preset-react',
       {
-        runtime: 'automatic'
-      }
-    ]
+        runtime: 'automatic',
+      },
+    ],
   ],
   plugins: [
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties',
-    isDev && '@babel/plugin-transform-runtime'
-  ].filter(Boolean)
+    isDev && '@babel/plugin-transform-runtime',
+  ].filter(Boolean),
 }
