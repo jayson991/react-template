@@ -28,6 +28,8 @@ $ npm i
 $ npm start
 ```
 
+### Then open http://localhost:8080/ to see your app
+
 ## Build for deploy
 
 ```bash
@@ -59,6 +61,8 @@ $ npm run docker:dev
 $ docker build -f Dockerfile.dev -t dev:builder . && docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm dev:builder
 ```
 
+#### Then open http://localhost:8080/ to see your app
+
 ## Docker for deploy
 
 ```bash
@@ -70,3 +74,5 @@ $ npm run docker:deploy
 ```bash
 $ docker build -f Dockerfile.prod -t prod:builder . && docker run -it -p 80:80 --rm prod:builder
 ```
+
+#### Then open http://localhost/ to see your app
