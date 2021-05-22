@@ -2,8 +2,6 @@ const path = require('path')
 const env = require('./env.dev')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 module.exports = {
@@ -47,7 +45,7 @@ module.exports = {
       {
         test: /\.s?[ac]ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -86,11 +84,6 @@ module.exports = {
       NODE_ENV: env.NODE_ENV,
       API_ENDPOINT: env.API_ENDPOINT,
     }),
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash:8].css',
-      chunkFilename: '[id].[contenthash:8].css',
-    }),
     // new CopyWebpackPlugin({
     //   patterns: [
     //     {
@@ -108,5 +101,5 @@ module.exports = {
       favicon: path.resolve(__dirname, '../public/favicon.ico'),
     }),
     new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean),
+  ],
 }
