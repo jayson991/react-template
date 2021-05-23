@@ -12,7 +12,7 @@ const productionGzipExtensions = ['js', 'css']
 
 module.exports = {
   mode: 'production',
-  target: ['web', 'es5'],
+  target: ['es5', 'web'],
   entry: {
     app: path.resolve(__dirname, '../src/index.js'),
     vendor: ['react', 'react-dom'],

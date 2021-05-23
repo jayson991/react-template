@@ -6,8 +6,8 @@ module.exports = {
       '@babel/preset-env',
       {
         corejs: 3,
-        modules: isDev && 'auto',
         useBuiltIns: 'usage',
+        modules: isDev && 'auto',
         targets: '> 1%, last 2 versions, not ie <= 8, iOS >= 8, Firefox >= 20, Android > 4.4',
       },
     ],

@@ -1,6 +1,7 @@
 const path = require('path')
 const env = require('./env.dev')
 const webpack = require('webpack')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
@@ -83,6 +84,9 @@ module.exports = {
       'process.env': env,
       NODE_ENV: env.NODE_ENV,
       API_ENDPOINT: env.API_ENDPOINT,
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
     // new CopyWebpackPlugin({
     //   patterns: [
