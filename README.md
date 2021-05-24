@@ -1,10 +1,5 @@
 # react-template
 
-## Development Warning
-
-- **Linux/Mac** for development is necessary, setting environment valuables on **Windows** is not compatible
-- **Highly Recommend** using **yarn** or **pnpm** to run the project since both are faster than **npm** for their own features
-
 ## Features
 
 - Use **Webpack 5** for bundler
